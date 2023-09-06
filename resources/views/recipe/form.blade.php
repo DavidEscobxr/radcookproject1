@@ -12,6 +12,11 @@
             {!! $errors->first('category', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('description') }}
+            {{ Form::text('description', $recipe->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description']) }}
+            {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('client_id') }}
             {{ Form::text('client_id', $recipe->client_id, ['class' => 'form-control' . ($errors->has('client_id') ? ' is-invalid' : ''), 'placeholder' => 'Client Id']) }}
             {!! $errors->first('client_id', '<div class="invalid-feedback">:message</div>') !!}

@@ -38,6 +38,7 @@
                                         
 										<th>Name</th>
 										<th>Category</th>
+										<th>Description</th>
 										<th>Client Id</th>
 
                                         <th></th>
@@ -50,6 +51,7 @@
                                             
 											<td>{{ $recipe->name }}</td>
 											<td>{{ $recipe->category }}</td>
+											<td>{{ $recipe->description }}</td>
 											<td>{{ $recipe->client_id }}</td>
 
                                             <td>

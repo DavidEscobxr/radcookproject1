@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $name
  * @property $category
+ * @property $description
  * @property $client_id
  * @property $created_at
  * @property $updated_at
@@ -25,6 +26,7 @@ class Recipe extends Model
     static $rules = [
 		'name' => 'required',
 		'category' => 'required',
+		'description' => 'required',
 		'client_id' => 'required',
     ];
 
@@ -35,7 +37,7 @@ class Recipe extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','category','client_id'];
+    protected $fillable = ['name','category','description','client_id'];
 
 
     /**

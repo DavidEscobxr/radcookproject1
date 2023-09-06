@@ -29,6 +29,10 @@
                             {{ $recipe->category }}
                         </div>
                         <div class="form-group">
+                            <strong>Description:</strong>
+                            {{ $recipe->description }}
+                        </div>
+                        <div class="form-group">
                             <strong>Client Id:</strong>
                             {{ $recipe->client_id }}
                         </div>
