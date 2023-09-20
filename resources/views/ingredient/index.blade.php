@@ -6,8 +6,8 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -35,7 +35,7 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+
 										<th>Name</th>
 										<th>Type</th>
 										<th>User Id</th>
@@ -47,7 +47,7 @@
                                     @foreach ($ingredients as $ingredient)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+
 											<td>{{ $ingredient->name }}</td>
 											<td>{{ $ingredient->type }}</td>
 											<td>{{ $ingredient->user_id }}</td>
