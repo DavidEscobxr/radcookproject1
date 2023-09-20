@@ -3,3 +3,10 @@ body {
     background-size: cover;
 
 }
+    /* En tu hoja de estilo CSS */
+.logo {
+    width: 95px; /* Ancho deseado */
+    height: 40px; /* Altura deseada */
+}
+
+
