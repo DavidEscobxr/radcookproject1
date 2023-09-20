@@ -1,0 +1,5 @@
+body {
+    background-image: url('../images/fondo.jpg'); /* Usamos '../' para subir un nivel y luego acceder a la carpeta 'images' */
+    background-size: cover;
+
+}

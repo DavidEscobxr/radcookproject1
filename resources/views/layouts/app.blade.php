@@ -12,8 +12,10 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link href="{{ asset('/resource/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('styles/app.css') }}" rel="stylesheet">
 
+
+<!--
     <style>
         body{
             background: url('/images/fondo.jpg');
@@ -21,7 +23,7 @@
         }
     </style>
 
-
+-->
 
 
     <!-- Scripts -->
