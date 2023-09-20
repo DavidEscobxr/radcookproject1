@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\IngredientController;
+use App\Http\Controllers\RecipeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +23,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::resource('clients', App\Http\Controllers\ClientController::class);
-Route::resource('recipes', App\Http\Controllers\RecipeController::class);
-Route::resource('ingredients', App\Http\Controllers\IngredientController::class);
+Route::resource('users', UserController::class);
+Route::resource('recipes', RecipeController::class);
+Route::resource('ingredients', IngredientController::class);

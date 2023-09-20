@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recipe;
+use App\Ingredient;
+use App\Recipe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class RecipeController
@@ -32,7 +34,8 @@ class RecipeController extends Controller
     public function create()
     {
         $recipe = new Recipe();
-        return view('recipe.create', compact('recipe'));
+        $ingredients = Ingredient::select('type')->get();
+        return view('recipe.create', compact('recipe', 'ingredients'));
     }
 
     /**
@@ -45,6 +48,8 @@ class RecipeController extends Controller
     {
         request()->validate(Recipe::$rules);
 
+        $request['user_id'] = Auth::user()->id;
+        $request['image_id'] = 1;
         $recipe = Recipe::create($request->all());
 
         return redirect()->route('recipes.index')

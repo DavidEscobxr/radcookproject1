@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Client
+ * Class User
  *
  * @property $id
- * @property $full_name
+ * @property $name
  * @property $role
  * @property $email
+ * @property $email_verified_at
+ * @property $password
+ * @property $remember_token
  * @property $created_at
  * @property $updated_at
  *
@@ -19,11 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Client extends Model
+class User extends Model
 {
     
     static $rules = [
-		'full_name' => 'required',
+		'name' => 'required',
 		'role' => 'required',
 		'email' => 'required',
     ];
@@ -35,7 +38,7 @@ class Client extends Model
      *
      * @var array
      */
-    protected $fillable = ['full_name','role','email'];
+    protected $fillable = ['name','role','email'];
 
 
     /**
@@ -43,7 +46,7 @@ class Client extends Model
      */
     public function ingredients()
     {
-        return $this->hasMany('App\Models\Ingredient', 'client_id', 'id');
+        return $this->hasMany('App\Ingredient', 'user_id', 'id');
     }
     
     /**
@@ -51,7 +54,7 @@ class Client extends Model
      */
     public function recipes()
     {
-        return $this->hasMany('App\Models\Recipe', 'client_id', 'id');
+        return $this->hasMany('App\Recipe', 'user_id', 'id');
     }
     
 

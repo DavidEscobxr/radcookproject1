@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ingredient;
+use App\Ingredient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class IngredientController
@@ -45,7 +46,8 @@ class IngredientController extends Controller
     {
         request()->validate(Ingredient::$rules);
 
-        $ingredient = Ingredient::create($request->all());
+        $request['user_id'] = Auth::user()->id;
+       $ingredient = Ingredient::create($request->all());
 
         return redirect()->route('ingredients.index')
             ->with('success', 'Ingredient created successfully.');

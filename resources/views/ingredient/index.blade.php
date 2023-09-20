@@ -38,7 +38,7 @@
                                         
 										<th>Name</th>
 										<th>Type</th>
-										<th>Client Id</th>
+										<th>User Id</th>
 
                                         <th></th>
                                     </tr>
@@ -50,7 +50,7 @@
                                             
 											<td>{{ $ingredient->name }}</td>
 											<td>{{ $ingredient->type }}</td>
-											<td>{{ $ingredient->client_id }}</td>
+											<td>{{ $ingredient->user_id }}</td>
 
                                             <td>
                                                 <form action="{{ route('ingredients.destroy',$ingredient->id) }}" method="POST">

@@ -33,8 +33,12 @@
                             {{ $recipe->description }}
                         </div>
                         <div class="form-group">
-                            <strong>Client Id:</strong>
-                            {{ $recipe->client_id }}
+                            <strong>User Id:</strong>
+                            {{ $recipe->user_id }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Image Id:</strong>
+                            {{ $recipe->image_id }}
                         </div>
 
                     </div>

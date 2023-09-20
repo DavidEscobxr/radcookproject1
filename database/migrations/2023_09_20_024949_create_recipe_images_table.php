@@ -10,21 +10,20 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
-        Schema::create('clients', function (Blueprint $table) {
-            $table->id();
-            $table->string('full_name');
-            $table->string('role');
-            $table->string('email')->unique();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('recipe_images', function (Blueprint $table) {
+        $table->id();
+        $table->string('image'); // Usar 'string' para almacenar la ruta/nombre del archivo de imagen
+        $table->timestamps();
+    });
+}
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('recipe_images');
     }
 };

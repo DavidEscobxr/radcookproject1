@@ -1,36 +1,36 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $client->name ?? "{{ __('Show') Client" }}
+    {{ $user->name ?? "{{ __('Show') User" }}
 @endsection
 
 @section('content')
-    <section class="content container-fluid ">
+    <section class="content container-fluid">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Client</span>
+                            <span class="card-title">{{ __('Show') }} User</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('clients.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary" href="{{ route('users.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Full Name:</strong>
-                            {{ $client->full_name }}
+                            <strong>Name:</strong>
+                            {{ $user->name }}
                         </div>
                         <div class="form-group">
                             <strong>Role:</strong>
-                            {{ $client->role }}
+                            {{ $user->role }}
                         </div>
                         <div class="form-group">
                             <strong>Email:</strong>
-                            {{ $client->email }}
+                            {{ $user->email }}
                         </div>
 
                     </div>

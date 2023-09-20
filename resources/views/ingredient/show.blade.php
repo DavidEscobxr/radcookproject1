@@ -29,8 +29,8 @@
                             {{ $ingredient->type }}
                         </div>
                         <div class="form-group">
-                            <strong>Client Id:</strong>
-                            {{ $ingredient->client_id }}
+                            <strong>User Id:</strong>
+                            {{ $ingredient->user_id }}
                         </div>
 
                     </div>

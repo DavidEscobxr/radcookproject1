@@ -39,7 +39,8 @@
 										<th>Name</th>
 										<th>Category</th>
 										<th>Description</th>
-										<th>Client Id</th>
+										<th>User Id</th>
+										<th>Image Id</th>
 
                                         <th></th>
                                     </tr>
@@ -52,7 +53,8 @@
 											<td>{{ $recipe->name }}</td>
 											<td>{{ $recipe->category }}</td>
 											<td>{{ $recipe->description }}</td>
-											<td>{{ $recipe->client_id }}</td>
+											<td>{{ $recipe->user_id }}</td>
+											<td>{{ $recipe->image_id }}</td>
 
                                             <td>
                                                 <form action="{{ route('recipes.destroy',$recipe->id) }}" method="POST">

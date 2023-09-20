@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,22 +10,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $name
  * @property $type
- * @property $client_id
+ * @property $user_id
  * @property $created_at
  * @property $updated_at
  *
- * @property Client $client
  * @property RecipeIngredient[] $recipeIngredients
+ * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
 class Ingredient extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
-		'type' => 'required',
-		'client_id' => 'required',
+		'type' => 'required'
     ];
 
     protected $perPage = 20;
@@ -35,24 +34,24 @@ class Ingredient extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','type','client_id'];
+    protected $fillable = ['name','type', 'user_id'];
 
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function client()
-    {
-        return $this->hasOne('App\Models\Client', 'id', 'client_id');
-    }
-    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function recipeIngredients()
     {
-        return $this->hasMany('App\Models\RecipeIngredient', 'ingredient_id', 'id');
+        return $this->hasMany('App\RecipeIngredient', 'ingredient_id', 'id');
     }
-    
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne('App\User', 'id', 'user_id');
+    }
+
 
 }
