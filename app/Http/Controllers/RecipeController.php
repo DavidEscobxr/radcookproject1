@@ -34,8 +34,17 @@ class RecipeController extends Controller
     public function create()
     {
         $recipe = new Recipe();
-        $ingredients = Ingredient::select('type')->get();
-        return view('recipe.create', compact('recipe', 'ingredients'));
+        $ingredients = Ingredient::get();
+
+        $map = $ingredients->groupBy(function($item){
+            return $item->type;
+        });
+
+
+        $map = $map->toArray();
+
+        //dd($map);
+        return view('recipe.create', compact('recipe', 'map'));
     }
 
     /**
@@ -47,10 +56,18 @@ class RecipeController extends Controller
     public function store(Request $request)
     {
         request()->validate(Recipe::$rules);
-
         $request['user_id'] = Auth::user()->id;
         $request['image_id'] = 1;
         $recipe = Recipe::create($request->all());
+
+        if ($recipe->id != null) {
+            foreach ($request['ingredients'] as $ingredient) {
+                $recipe->recipeIngredients()->create([
+                    'recipe_id' => $recipe->id,
+                    'ingredient_id' => $ingredient
+                ]);
+            }
+        }
 
         return redirect()->route('recipes.index')
             ->with('success', 'Recipe created successfully.');

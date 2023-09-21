@@ -9,4 +9,9 @@ body {
     height: 40px; /* Altura deseada */
 }
 
+.receta{
+    width: 200px; /* Ancho deseado */
+    height: 155px;
+}
+
 

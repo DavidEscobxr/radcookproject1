@@ -17,7 +17,29 @@
             {{ Form::text('description', $recipe->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Description']) }}
             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-        {{$ingredients}}
+        <br>
+        @foreach($map as $type => $ingredients)
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne-{{$type}}" aria-expanded="true" aria-controls="collapseOne">
+                    {{$type}}
+                </button>
+              </h2>
+            </div>
+          </div>
+            @foreach ($ingredients as $ingredient)
+            <div id="collapseOne-{{$type}}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" name="ingredients[]" value={{$ingredient['id']}}> <label>{{$ingredient['name']}}</label>
+                    </div>
+                </div>
+              </div>
+            @endforeach
+        @endforeach
+
+
         <!--
         <div class="form-group">
             {{ Form::label('user_id') }}
