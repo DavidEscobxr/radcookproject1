@@ -14,4 +14,9 @@ body {
     height: 155px;
 }
 
+.img-thumbnail{
+    margin: auto;
+    display: block;
+}
+
 
