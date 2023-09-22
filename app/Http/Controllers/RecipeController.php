@@ -57,7 +57,12 @@ class RecipeController extends Controller
     {
         request()->validate(Recipe::$rules);
         $request['user_id'] = Auth::user()->id;
-        $request['image_id'] = 1;
+
+        $file = $request->file('photo');
+        $destinationPath = 'uploads/recipes';
+        $file->move($destinationPath, $file->getClientOriginalName());
+        $request['image'] = ($destinationPath . '/' . $file->getClientOriginalName());
+
         $recipe = Recipe::create($request->all());
 
         if ($recipe->id != null) {
@@ -96,7 +101,16 @@ class RecipeController extends Controller
     {
         $recipe = Recipe::find($id);
 
-        return view('recipe.edit', compact('recipe'));
+        $ingredients = Ingredient::get();
+
+        $map = $ingredients->groupBy(function($item){
+            return $item->type;
+        });
+
+
+        $map = $map->toArray();
+
+        return view('recipe.edit', compact('recipe', 'map'));
     }
 
     /**

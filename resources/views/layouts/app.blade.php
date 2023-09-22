@@ -19,13 +19,15 @@
 
 
     <!-- Scripts -->
+
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 
 
 </head>
 <body class="fondo">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-lg p-1 rounded bg-custom-color">
             <div class="container">
                 <a class="navbar-brand text-success" href="{{ url('/') }}">
                     <img class="logo" src="{{ asset('images/logo.png') }}" alt="RadCook Logo">
@@ -90,5 +92,11 @@
             @yield('content')
         </main>
     </div>
+    <script src="https://unpkg.com/typewriter-effect@latest/dist/core.js"></script>
+    <script src="{{ asset('javascript/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
 </body>
+
 </html>

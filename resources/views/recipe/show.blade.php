@@ -11,34 +11,34 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Recipe</span>
+                            <span class="card-title">{{ __('Mostrar') }} Receta</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('recipes.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-success" href="{{ route('recipes.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <strong>Name:</strong>
+                            <strong>Nombre:</strong>
                             {{ $recipe->name }}
                         </div>
                         <div class="form-group">
-                            <strong>Category:</strong>
+                            <strong>Categoría:</strong>
                             {{ $recipe->category }}
                         </div>
                         <div class="form-group">
-                            <strong>Description:</strong>
+                            <strong>Descripción:</strong>
                             {{ $recipe->description }}
                         </div>
                         <div class="form-group">
-                            <strong>User Id:</strong>
+                            <strong>ID de usuario:</strong>
                             {{ $recipe->user_id }}
                         </div>
                         <div class="form-group">
-                            <strong>Image Id:</strong>
-                            {{ $recipe->image_id }}
+                            <strong>Imagen</strong>
+                            <img src="{{ asset($recipe->image) }}" alt="" width="300" height="200" style="border-radius: 10px;">
                         </div>
 
                     </div>

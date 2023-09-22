@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Recipe') }}
+                                {{ __('Receta') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('recipes.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                <a href="{{ route('recipes.create') }}" class="btn btn-success btn-sm float-right"  data-placement="left">
+                                  {{ __('Crear nueva receta') }}
                                 </a>
                               </div>
                         </div>
@@ -34,14 +34,11 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>No</th>
-
-										<th>Name</th>
-										<th>Category</th>
-										<th>Description</th>
-										<th>User Id</th>
-										<th>Image Id</th>
-
+                                        <th>ID</th>
+										<th>Nombre</th>
+										<th>Categoría</th>
+										<th>Descripción</th>
+										<th>ID de usuario</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -54,15 +51,14 @@
 											<td>{{ $recipe->category }}</td>
 											<td>{{ $recipe->description }}</td>
 											<td>{{ $recipe->user_id }}</td>
-											<td>{{ $recipe->image_id }}</td>
 
                                             <td>
                                                 <form action="{{ route('recipes.destroy',$recipe->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('recipes.show',$recipe->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('recipes.edit',$recipe->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('recipes.show',$recipe->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('recipes.edit',$recipe->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
                                             </td>
                                         </tr>

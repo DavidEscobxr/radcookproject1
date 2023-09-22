@@ -2,7 +2,7 @@
     <div class="box-body">
 
         <div class="form-group">
-            {{ Form::label('name') }}
+            {{ Form::label('nombre') }}
             {{ Form::text('name', $ingredient->name, ['class' => 'form-control' . ($errors->has('name') ? ' is-invalid' : ''), 'placeholder' => 'Name']) }}
             {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
         </div>
@@ -14,7 +14,7 @@
         </div>
         -->
         <div class="form-group">
-            {{ Form::label('type') }}
+            {{ Form::label('tipo') }}
             {{ Form::select('type',  ['Fruta'=>'Fruta', 'Verdura'=>'Verdura', 'Carne' => 'Carne',
             'Pescado' => 'Pescado',
             'Lácteos' => 'Lácteos',
@@ -35,10 +35,9 @@
             'Congelados' => 'Congelados'], $ingredient->type, ['class' => 'form-control' . ($errors->has('type') ? ' is-invalid' : ''), 'placeholder' => 'Selecciona tipo de ingrediente']) }}
             {!! $errors->first('type', '<div class="invalid-feedback">:message</div>') !!}
         </div>
-
-
     </div>
+    <br>
     <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button type="submit" class="btn btn-success">{{ __('Aceptar') }}</button>
     </div>
 </div>

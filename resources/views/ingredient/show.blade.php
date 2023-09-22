@@ -11,25 +11,25 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Ingredient</span>
+                            <span class="card-title">{{ __('Mostrar') }} Ingrediente</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('ingredients.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-success" href="{{ route('ingredients.index') }}"> {{ __('Volver') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <strong>Name:</strong>
+                            <strong>Nombre:</strong>
                             {{ $ingredient->name }}
                         </div>
                         <div class="form-group">
-                            <strong>Type:</strong>
+                            <strong>Tipo:</strong>
                             {{ $ingredient->type }}
                         </div>
                         <div class="form-group">
-                            <strong>User Id:</strong>
+                            <strong>Id de usuario:</strong>
                             {{ $ingredient->user_id }}
                         </div>
 

@@ -43,17 +43,4 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-
-    public function Comentario_forum (){
-       
-        return $this->hasMany ('App/Models/Coment_forum');
-
-    }
-
-    public function Comentario_recipe (){
-       
-        return $this->hasMany ('App/Models/Coment_recipe');
-
-    }
 }

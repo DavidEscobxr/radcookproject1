@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ __('Create') }} Ingredient
+    {{ __('Crear') }} Ingrediente
 @endsection
 
 @section('content')

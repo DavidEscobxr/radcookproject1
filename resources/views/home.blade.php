@@ -4,8 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Radcook') }}</div>
+            <div class="card custom-card">
+                <div class="d-flex flex-column align-items-center">
+                    <br>
+                    <a><img class="logo" src="{{ asset('images/logo.png') }}" alt="RadCook Logo"></a>
+                    <br>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,15 +18,13 @@
                         </div>
                     @endif
 
-                    {{ __('Ya estás registrado') }}
+                    <h4>{{ __('¡Felicidades, ya iniciaste sesión!') }}</h4>
                 </div>
             </div>
+
         </div>
     </div>
 </div>
-
-<h1>HOLAAAAAAAAAAAA DESDE HOME</h1>
-
 </div>
 
 @endsection

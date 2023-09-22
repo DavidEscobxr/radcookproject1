@@ -12,11 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property $category
  * @property $description
  * @property $user_id
- * @property $image_id
+ * @property $image
  * @property $created_at
  * @property $updated_at
  *
- * @property RecipeImage $recipeImage
  * @property RecipeIngredient[] $recipeIngredients
  * @property User $user
  * @package App
@@ -29,6 +28,7 @@ class Recipe extends Model
 		'name' => 'required',
 		'category' => 'required',
 		'description' => 'required',
+        'photo' => 'required'
 		/*'user_id' => 'required',
 		'image_id' => 'required',
         */
@@ -41,16 +41,7 @@ class Recipe extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','category','description','user_id','image_id'];
-
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
-     */
-    public function recipeImage()
-    {
-        return $this->hasOne('App\RecipeImage', 'id', 'image_id');
-    }
+    protected $fillable = ['name','category','description','user_id','image'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
