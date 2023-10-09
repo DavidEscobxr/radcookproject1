@@ -228,15 +228,16 @@
 
     <div class="jumbotron custom-jumbotron rounded shadow-sm text-center  bg-custom-beish">
         <div class="container w-50 m-auto text-center" id="equipo">
-            <h1 class="mb-5 fs-2"><br>Una receta no tiena alma. <span class="text-success"><br>Es el cocinero quien debe darle alma a la receta</span>.</h1>
+            <h1 class="mb-5 fs-2"><br>Una receta no tiena alma. <span class="text-success"><br>Es el cocinero es quien debe darle alma a la receta</span>.</h1>
             <p class="fs-4 ">Somos un equipo pequeño compremetidos con el desarrollo de esta plataforma web... descarga nuestra app en tu movil donde podras guardar y descargar tus recetas. <br> </p>
         </div>
     </div>
 
 
 </div>
-<footer class="bg-dark py-3 text-center">
-    <a href="#" class="text-white">Todos los derechos reservados</a>
+<footer class="bg-success py-3 text-center">
+    <a href="#" class="text-white">RadCook, todos los derechos reservados. <br>
+    Contacto: radcook@gmail.com</a>
 </footer>
 
 @endsection

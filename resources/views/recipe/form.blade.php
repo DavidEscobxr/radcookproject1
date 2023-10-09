@@ -33,7 +33,6 @@
             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
-
         <div class="form-group">
             {{ Form::label('Imagen') }}
             {{ Form::file('photo'), ['class' => 'form-control' . ($errors->has('image') ? ' is-invalid' : ''), 'placeholder' => 'Imagen de la receta']}}

@@ -34,7 +34,7 @@
                     <img class="retrato rounded" src="{{ asset('images/david.jpeg') }}" alt="">
                     <br>
                   <h2 class="card-title text-success">Desarrollador</h2>
-                  <p class="card-text"> Desarrollador en el poyecto RadCook, documentador y diseñador
+                  <p class="card-text"> Desarrollador, documentador y diseñador en el poyecto RadCook
                   </p>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <img class="retrato rounded" src="{{ asset('images/tatiana.jpeg') }}" alt="">
                     <br>
                   <h2 class="card-title text-success">Desarrolladora</h2>
-                  <p class="card-text"> Desarrollador en el poyecto RadCook, documentador y diseñador
+                  <p class="card-text"> Desarrolladora, documentadora y diseñadora en el poyecto RadCook
                   </p>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                     <img class="retrato rounded" src="{{ asset('images/pablo.jpeg') }}" alt="">
                     <br>
                   <h2 class="card-title text-success">Desarrollador</h2>
-                  <p class="card-text"> Desarrollador en el poyecto RadCook, documentador y diseñador
+                  <p class="card-text"> Desarrollador, documentador y diseñador en el poyecto RadCook
                   </p>
                 </div>
             </div>

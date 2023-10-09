@@ -157,9 +157,6 @@ body {
     color: #3f3f3f;
 }
 
-
-
-
 /*=========================FOOTER================================*/
 
 footer {
@@ -205,7 +202,6 @@ footer p{
         margin:auto;
     }
 
-
     #img-equipo{
         max-height:20rem !important;
         width:90%;
@@ -218,7 +214,6 @@ footer p{
     #bg-contactos{
         top: -120px;
     }
-
 
 }
 /*=========================MEDIA QUERIES PANTALLA EXTRA-SM================================*/

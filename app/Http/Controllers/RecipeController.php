@@ -43,7 +43,6 @@ class RecipeController extends Controller
 
         $map = $map->toArray();
 
-        //dd($map);
         return view('recipe.create', compact('recipe', 'map'));
     }
 
