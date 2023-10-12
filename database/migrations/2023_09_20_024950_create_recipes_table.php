@@ -18,8 +18,7 @@ return new class extends Migration
             $table->text('description');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('image_id');
-            $table->foreign('image_id')->references('id')->on('recipe_images');
+            $table->string('image');
             $table->timestamps();
         });
     }

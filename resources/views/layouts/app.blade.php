@@ -58,12 +58,24 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="{{ url('/') }}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="{{ url('contacat') }}">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="{{ url('/') }}">Foro</a>
+                        </li>
 
                         <li class="nav-item">
                             <a class="nav-link text-success" href="{{ route('recipes.index')}}">Recetas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-success" href="{{ route('ingredients.index')}}">Ingredientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-success" href="{{ url('/') }}">Favoritos</a>
                         </li>
 
                             <li class="nav-item dropdown">

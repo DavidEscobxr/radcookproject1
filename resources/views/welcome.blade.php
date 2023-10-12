@@ -56,7 +56,7 @@
 
 
     </div>
-
+    <!--
     <section class="d-flex flex-column justify-content-center align-items-center pt-5  text-center w-100 m-auto" id="intro">
 
         <div class="jumbotron custom-jumbotron rounded shadow-sm text-center  bg-custom-beish">
@@ -70,13 +70,13 @@
 
         </div>
 
-    </section>
+    </section> -->
     <div>
         <div class="row justify-content-center "  >
 
             <div class="col-md-3 row justify-content-center">
                 <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 18rem;">
-                    <div class="card-header shadow-sm rounded"><h2>Huevos pericos</h2></div>
+                    <div class="card-header shadow-sm rounded"><h2>Huevos pericos<br></h2></div>
                     <div class="card-body">
                         <img class="receta rounded" src="{{ asset('images/huevoperico.jpg') }}" alt="">
                         <br>
@@ -107,7 +107,7 @@
             </div>
             <div class="col-md-3 row justify-content-center">
                 <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 18rem;">
-                    <div class="card-header shadow-sm rounded"><h2>Fríjoles</h2></div>
+                    <div class="card-header shadow-sm rounded"><h2>Fríjoles<br></h2></div>
                     <div class="card-body">
                         <img class="receta rounded" src="{{ asset('images/frijoles.jpg') }}" alt="">
                         <br>
@@ -128,7 +128,7 @@
 
             <div class="col-md-3 row justify-content-center">
                 <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 18rem;">
-                    <div class="card-header shadow-sm rounded"><h2>Arroz blanco</h2></div>
+                    <div class="card-header shadow-sm rounded"><h2>Arroz blanco<br></h2></div>
                     <div class="card-body">
                         <img class="receta rounded" src="{{ asset('images/arrozblanco.jpg') }}" alt="">
                         <br>
@@ -163,7 +163,7 @@
             </div>
             <div class="col-md-3 row justify-content-center">
                 <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 18rem;">
-                    <div class="card-header shadow-sm rounded"><h2>Puré de papa</h2></div>
+                    <div class="card-header shadow-sm rounded"><h2>Puré de papa<br></h2></div>
                     <div class="card-body">
                         <img class="receta rounded" src="{{ asset('images/purepapa.jpg') }}" alt="">
                         <br>

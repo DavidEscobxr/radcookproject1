@@ -232,3 +232,11 @@ footer p{
         text-align: center;
     }
 }
+
+.card {
+    transition: transform 0.2s; /* Agrega una transición suave */
+  }
+
+  .card:hover {
+    transform: scale(1.05); /* Escala la tarjeta al 105% del tamaño original */
+  }
