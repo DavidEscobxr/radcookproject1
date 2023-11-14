@@ -108,4 +108,9 @@ class IngredientController extends Controller
         return redirect()->route('ingredients.index')
             ->with('success', 'Ingredient deleted successfully');
     }
+
+    public function prueba(){
+        $ingredient = Ingredient::all();
+        return response()->json($ingredient);
+    }
 }
