@@ -39,3 +39,7 @@ Route::get('ingredient/{id}', [IngredientController::class, 'getById']);
 Route::post('recipe/create', [RecipeController::class, 'create']);
 
 Route::get('recipes', [RecipeController::class, 'getAll']);
+
+Route::get('recipe/{id}', [RecipeController::class, 'getById']);
+
+Route::post('recipe/{id}/edit', [RecipeController::class, 'update']);

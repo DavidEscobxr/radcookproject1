@@ -23,4 +23,6 @@ class RecipeIngredient extends Model
      * @var array
      */
     protected $fillable = ['recipe_id','ingredient_id'];
+
+    protected $table = 'recipe_ingredients';
 }

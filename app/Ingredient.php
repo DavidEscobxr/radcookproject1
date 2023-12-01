@@ -45,6 +45,11 @@ class Ingredient extends Model
         return $this->hasMany('App\RecipeIngredient', 'ingredient_id', 'id');
     }
 
+    public function recipes()
+    {
+        return $this->belongsToMany(Recipe::class, 'recipe_ingredients');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
