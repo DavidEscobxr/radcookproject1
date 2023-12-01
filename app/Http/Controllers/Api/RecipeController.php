@@ -139,4 +139,17 @@ class RecipeController extends BaseController
 
         return response()->json(['status' => 'update successed'], Response::HTTP_OK);
     }
+
+    public function destroy(Int $id)
+    {
+        $recipe = Recipe::find($id);
+
+        if ($recipe == null) {
+            return response()->json(['status' => 'not_found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $recipe->delete();
+
+        return response()->json(['status' => 'success', 'message' => 'Recipe delete successfully'], Response::HTTP_OK);
+    }
 }

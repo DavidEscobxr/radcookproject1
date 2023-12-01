@@ -43,3 +43,5 @@ Route::get('recipes', [RecipeController::class, 'getAll']);
 Route::get('recipe/{id}', [RecipeController::class, 'getById']);
 
 Route::post('recipe/{id}/edit', [RecipeController::class, 'update']);
+
+Route::delete('recipe/{id}/delete', [RecipeController::class, 'destroy']);
