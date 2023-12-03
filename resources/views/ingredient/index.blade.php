@@ -34,11 +34,8 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>ID</th>
-
 										<th>Nombre</th>
 										<th>Tipo</th>
-										<th>ID de usuario</th>
 
                                         <th></th>
                                     </tr>
@@ -46,21 +43,19 @@
                                 <tbody>
                                     @foreach ($ingredients as $ingredient)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
 
 											<td>{{ $ingredient->name }}</td>
 											<td>{{ $ingredient->type }}</td>
-											<td>{{ $ingredient->user_id }}</td>
-
+                                            <!--
                                             <td>
                                                 <form action="{{ route('ingredients.destroy',$ingredient->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('ingredients.show',$ingredient->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Mostrar') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('ingredients.edit',$ingredient->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
+                                                   <a class="btn btn-sm btn-success" href="{{ route('ingredients.edit',$ingredient->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Editar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}</button>
                                                 </form>
-                                            </td>
+                                            </td>-->
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -68,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $ingredients->links() !!}
+
             </div>
         </div>
     </div>

@@ -28,6 +28,7 @@ class Recipe extends Model
 		'name' => 'required',
 		'category' => 'required',
 		'description' => 'required',
+        'detail' => 'required',
         'photo' => 'required'
 		/*'user_id' => 'required',
 		'image_id' => 'required',
@@ -41,7 +42,7 @@ class Recipe extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','category','description','user_id','image'];
+    protected $fillable = ['name','category','description','detail', 'user_id','image'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

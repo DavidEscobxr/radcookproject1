@@ -13,7 +13,6 @@
                     <div>{{ __('Iniciar sesión') }}</div>
                 </div>
 
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -56,6 +55,10 @@
                                     </label>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            {{ $status }}
                         </div>
 
                         <div class="row mb-0">

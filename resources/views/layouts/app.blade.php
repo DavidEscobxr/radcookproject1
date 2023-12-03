@@ -45,7 +45,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
+                        @if ($user == null)
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link text-success" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
@@ -95,7 +95,7 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endif
                     </ul>
                 </div>
             </div>

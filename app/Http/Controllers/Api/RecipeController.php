@@ -20,6 +20,7 @@ class RecipeController extends BaseController
             'name' => ['required', 'string', 'max:255'],
             'category' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
+            'detail' => ['required', 'string'],
             'user_id' =>['required', 'integer'],
             'image' => ['required', 'string', 'max:255'],
             'ingredients' => ['required', 'array']
@@ -51,6 +52,7 @@ class RecipeController extends BaseController
             'name' => $request->name,
             'category' => $request->category,
             'description' => $request->description,
+            'detail' => $request->detail,
             'user_id' =>$user->id,
             'image' => $request->image
         ]);
@@ -128,6 +130,7 @@ class RecipeController extends BaseController
             'name' => $request->name,
             'category' => $request->category,
             'description' => $request->description,
+            'detail' => $request->detail,
             'image' => $request->image
         ]);
 

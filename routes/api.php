@@ -1,12 +1,15 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Api\ForoController;
+use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\IngredientController;
 use App\Http\Controllers\Api\RecipeController;
 use App\Http\Controllers\UserController;
+use App\Ingredient;
+use App\Models\Foro;
 use App\Recipe;
 
 /*
@@ -24,11 +27,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login/v2', [LoginController::class, 'loginV2']);
+Route::post('login/v2', [LoginController::class, 'login']);
 
 Route::get('get_datauser', [UserController::class, 'dataUser']);
 
-Route::post('user/create', [RegisterController::class, 'create']);
+Route::post('user/create/v2', [RegisterController::class, 'create']);
 
 Route::post('ingredient/create', [IngredientController::class, 'create']);
 
@@ -45,3 +48,13 @@ Route::get('recipe/{id}', [RecipeController::class, 'getById']);
 Route::post('recipe/{id}/edit', [RecipeController::class, 'update']);
 
 Route::delete('recipe/{id}/delete', [RecipeController::class, 'destroy']);
+
+Route::get('ingredient/{id}/recipes', [IngredientController::class, 'getRecipesByIngredient']);
+
+Route::post('foro/create', [ForoController::class, 'create']);
+
+Route::delete('foro/{id}/delete', [ForoController::class, 'destroy']);
+
+Route::get('foros', [ForoController::class, 'getAll']);
+
+Route::get('foros/user/{id}', [ForoController::class, 'getByUserId']);

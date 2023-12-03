@@ -47,7 +47,7 @@ class IngredientController extends BaseController
     }
 
     public function getAll(Request $request){
-        $ingredients = Ingredient::all()->groupBy('type');
+        $ingredients = Ingredient::all();
 
         if ($ingredients->count() == 0){
             return response()->json(['status' => 'not_found'], Response::HTTP_NOT_FOUND);
@@ -65,5 +65,14 @@ class IngredientController extends BaseController
         }
 
         return response()->json($ingredient, response::HTTP_OK);
+    }
+
+    public function getRecipesByIngredient(int $id){
+        $ingredient = Ingredient::find($id);
+        if ($ingredient == null){
+            return response()->json(['status' => 'not_found'], Response::HTTP_NOT_FOUND);
+        }
+
+        return response()->json($ingredient->recipes, Response::HTTP_OK);
     }
 }

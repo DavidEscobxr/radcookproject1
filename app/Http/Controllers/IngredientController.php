@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ingredient;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,12 +18,35 @@ class IngredientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*
     public function index()
     {
         $ingredients = Ingredient::paginate();
 
         return view('ingredient.index', compact('ingredients'))
             ->with('i', (request()->input('page', 1) - 1) * $ingredients->perPage());
+    }
+    */
+
+    public function index()
+    {
+        $client = new Client();
+        $response = $client->request('GET', 'http://localhost/radcookproject1/public/api/ingredients', [
+            'headers' => [
+                'Accept' => 'application/json'
+            ]
+        ]);
+        $statusCode = $response->getStatusCode();
+
+        if ($statusCode != 200){
+            return view('ingredient.index','No hay ingredientes');
+        }
+
+        $body = $response->getBody()->getContents();
+
+        return view('ingredient.index', ['ingredients' => json_decode($body)])
+        ->with('i', 1);
     }
 
     /**

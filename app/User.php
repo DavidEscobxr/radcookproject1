@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class User extends Model
 {
-    
+
     static $rules = [
 		'name' => 'required',
 		'role' => 'required',
@@ -48,7 +48,7 @@ class User extends Model
     {
         return $this->hasMany('App\Ingredient', 'user_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -56,6 +56,6 @@ class User extends Model
     {
         return $this->hasMany('App\Recipe', 'user_id', 'id');
     }
-    
+
 
 }
