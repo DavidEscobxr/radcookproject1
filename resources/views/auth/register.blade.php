@@ -11,8 +11,6 @@
                     <br>
                     <div>{{ __('Registrarse') }}</div>
                 </div>
-
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -67,6 +65,12 @@
                             </div>
                         </div>
 
+                        <br>
+                        <div class="row mb-6">
+                            @if ($error != null)
+                                <p class="text-danger"> {{$error}} </p>
+                            @endif
+                        </div>
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-success">

@@ -28,6 +28,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('login/v2', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout']);
 
 Route::get('get_datauser', [UserController::class, 'dataUser']);
 
@@ -58,3 +59,5 @@ Route::delete('foro/{id}/delete', [ForoController::class, 'destroy']);
 Route::get('foros', [ForoController::class, 'getAll']);
 
 Route::get('foros/user/{id}', [ForoController::class, 'getByUserId']);
+
+Route::get('recipes/user/{id}', [RecipeController::class, 'getByUserId']);

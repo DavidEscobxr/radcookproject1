@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -12,27 +11,9 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class LoginController extends Controller
 {
 
-
-
     public function login(Request $request)
     {
         $credentials = $request->only('email','password');
-       /* if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = auth()->guard('api')->attempt($credentials);
-
-
-            return response()->json([
-                'message' => 'Inicio de sesión exitoso',
-                'name' => $user->name,
-                'access_token' => $token
-                 ], 200);
-        }
-
-
-        return response()->json(['message' => 'Credenciales inválidas'],401);*/
-
-        //valid credential
         $validator = Validator::make($credentials, [
             'email' => 'required|email',
             'password' => 'required|string|min:6|max:50'
@@ -43,7 +24,6 @@ class LoginController extends Controller
             return response()->json(['error' => $validator->messages()], 200);
         }
 
-
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
                 return response()->json([
@@ -52,7 +32,6 @@ class LoginController extends Controller
                 ], 400);
             }
         } catch (JWTException $e) {
-            return $e;
             return response()->json([
                  'success' => false,
                  'status' => 'Could not create token.',
@@ -64,5 +43,30 @@ class LoginController extends Controller
             'token_type' => 'bearer',
             'expires_in' => config('jwt.ttl') * 60
         ]);
+    }
+
+    public function logout(Request $request)
+    {
+        $validator = Validator::make($request->only('token'), [
+            'token' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->messages()], 400);
+        }
+
+        try {
+            JWTAuth::parseToken()->invalidate();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'User has been logged out'
+            ], 200);
+        } catch (JWTException $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Sorry, user cannot be logged out'
+            ], 500);
+        }
     }
 }

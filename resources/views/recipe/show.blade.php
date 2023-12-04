@@ -33,14 +33,24 @@
                             {{ $recipe->description }}
                         </div>
                         <div class="form-group">
-                            <strong>ID de usuario:</strong>
-                            {{ $recipe->user_id }}
+                            <strong>Pasos:</strong>
+                            {{ $recipe->detail }}
                         </div>
                         <div class="form-group">
                             <strong>Imagen</strong>
                             <img src="{{ asset($recipe->image) }}" alt="" width="300" height="200" style="border-radius: 10px;">
                         </div>
 
+                        <div class="box box-info padding-1">
+                            <div class="box-body">
+                                <strong>Ingredientes</strong>
+                                <ul class="list-group">
+                                    @foreach($recipe->ingredients as $i => $ingredient)
+                                        <li class="list-group-item"> {{$ingredient->name}}</li>
+                                    @endforeach
+
+                                </ul>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use App\Ingredient;
 use App\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /**
  * Class RecipeController
@@ -18,6 +19,7 @@ class RecipeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*
     public function index()
     {
         $recipes = Recipe::paginate();
@@ -25,12 +27,30 @@ class RecipeController extends Controller
         return view('recipe.index', compact('recipes'))
             ->with('i', (request()->input('page', 1) - 1) * $recipes->perPage());
     }
+    */
+
+    public function index()
+    {
+        $userId = Auth::user()->id;
+        $response = Http::get('http://localhost/radcookproject1/public/api/recipes/user/'.$userId);
+        $statusCode = $response->getStatusCode();
+
+        if ($statusCode != 200){
+            return view('recipe.index', ['recipes' => []]);
+        }
+
+        $recipes =  json_decode($response->getBody()->getContents());
+
+        return view('recipe.index',  compact('recipes'))
+        ->with('i', 1);
+    }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         $recipe = new Recipe();
@@ -43,7 +63,7 @@ class RecipeController extends Controller
 
         $map = $map->toArray();
 
-        return view('recipe.create', compact('recipe', 'map'));
+        return view('recipe.create', compact('recipe', 'map'), ['error' => '']);
     }
 
     /**
@@ -62,15 +82,34 @@ class RecipeController extends Controller
         $file->move($destinationPath, $file->getClientOriginalName());
         $request['image'] = ($destinationPath . '/' . $file->getClientOriginalName());
 
-        $recipe = Recipe::create($request->all());
+        $ingredients = [];
+        foreach ($request->ingredients as $ingredient) {
+            $ingredients[] = intval($ingredient);
+        }
 
-        if ($recipe->id != null) {
-            foreach ($request['ingredients'] as $ingredient) {
-                $recipe->recipeIngredients()->create([
-                    'recipe_id' => $recipe->id,
-                    'ingredient_id' => $ingredient
-                ]);
-            }
+        $response = Http::post('http://localhost/radcookproject1/public/api/recipe/create', [
+            'name' => $request->name,
+            'category' => $request->category,
+            'description' => $request->description,
+            'detail' => $request->detail,
+            'user_id' =>  Auth::user()->id,
+            'image' => $request->image,
+            'ingredients' => $ingredients
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode != 200) {
+            $recipe = new Recipe();
+            $ingredients = Ingredient::get();
+
+            $map = $ingredients->groupBy(function($item){
+                return $item->type;
+            });
+
+
+            $map = $map->toArray();
+
+            return view('recipe.create', compact('recipe', 'map'), ['error' => 'No fue posible guardar la receta']);
         }
 
         return redirect()->route('recipes.index')
@@ -83,9 +122,24 @@ class RecipeController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+   /* public function show($id)
     {
         $recipe = Recipe::find($id);
+
+        return view('recipe.show', compact('recipe'));
+    }*/
+
+    public function show($id)
+    {
+        $response = Http::get('http://localhost/radcookproject1/public/api/recipe/' . $id);
+
+        $statusCode = $response->getStatusCode();
+
+        if ($statusCode != 200) {
+            return view('recipe.index', ['recipe' => []]);
+        }
+
+        $recipe =  json_decode($response->getBody()->getContents());
 
         return view('recipe.show', compact('recipe'));
     }
@@ -96,7 +150,7 @@ class RecipeController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    /*public function edit($id)
     {
         $recipe = Recipe::find($id);
 
@@ -109,7 +163,26 @@ class RecipeController extends Controller
 
         $map = $map->toArray();
 
-        return view('recipe.edit', compact('recipe', 'map'));
+        return view('recipe.edit', compact('recipe', 'map'), ['error' => '']);
+    }*/
+
+    public function edit($id)
+    {
+        $response = Http::get('http://localhost/radcookproject1/public/api/recipe/' . $id);
+
+        $ingredients = Ingredient::get();
+        $map = $ingredients->groupBy(function($item){
+            return $item->type;
+        });
+        $map = $map->toArray();
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode != 200) {
+            return view('recipe.edit', compact('recipe', 'map'), ['error' => '']);
+        }
+
+        $recipe =  json_decode($response->getBody()->getContents());
+        return view('recipe.edit', compact('recipe', 'map'), ['error' => '']);
     }
 
     /**
@@ -122,8 +195,41 @@ class RecipeController extends Controller
     public function update(Request $request, Recipe $recipe)
     {
         request()->validate(Recipe::$rules);
+        $request['user_id'] = Auth::user()->id;
 
-        $recipe->update($request->all());
+        $file = $request->file('photo');
+        $destinationPath = 'uploads/recipes';
+        $file->move($destinationPath, $file->getClientOriginalName());
+        $request['image'] = ($destinationPath . '/' . $file->getClientOriginalName());
+
+        $ingredients = [];
+        foreach ($request->ingredients as $ingredient) {
+            $ingredients[] = intval($ingredient);
+        }
+
+        $response = Http::post('http://localhost/radcookproject1/public/api/recipe/'.$recipe->id.'/edit', [
+            'name' => $request->name,
+            'category' => $request->category,
+            'description' => $request->description,
+            'detail' => $request->detail,
+            'user_id' =>  Auth::user()->id,
+            'image' => $request->image,
+            'ingredients' => $ingredients
+        ]);
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode != 200) {
+            $ingredients = Ingredient::get();
+
+            $map = $ingredients->groupBy(function($item){
+                return $item->type;
+            });
+
+
+            $map = $map->toArray();
+
+            return view('recipe.edit', compact('recipe', 'map'), ['error' => 'No fue posible actualizar la receta']);
+        }
 
         return redirect()->route('recipes.index')
             ->with('success', 'Recipe updated successfully');
@@ -136,7 +242,12 @@ class RecipeController extends Controller
      */
     public function destroy($id)
     {
-        $recipe = Recipe::find($id)->delete();
+        $response = Http::delete('http://localhost/radcookproject1/public/api/recipe/'.$id.'/delete');
+        $statusCode = $response->getStatusCode();
+
+        if ($statusCode != 200) {
+            return view('recipe.index', ['error' => 'No fue posible eliminar la receta']);
+        }
 
         return redirect()->route('recipes.index')
             ->with('success', 'Recipe deleted successfully');

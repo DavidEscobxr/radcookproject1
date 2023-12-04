@@ -34,23 +34,18 @@
                             <table class="table table-striped table-hover">
                                 <thead class="thead">
                                     <tr>
-                                        <th>ID</th>
 										<th>Nombre</th>
 										<th>Categoría</th>
 										<th>Descripción</th>
-										<th>ID de usuario</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($recipes as $recipe)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-
 											<td>{{ $recipe->name }}</td>
 											<td>{{ $recipe->category }}</td>
 											<td>{{ $recipe->description }}</td>
-											<td>{{ $recipe->user_id }}</td>
 
                                             <td>
                                                 <form action="{{ route('recipes.destroy',$recipe->id) }}" method="POST">
@@ -68,7 +63,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $recipes->links() !!}
+
             </div>
         </div>
     </div>

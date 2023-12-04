@@ -6,6 +6,7 @@ use App\Ingredient;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 /**
  * Class IngredientController
@@ -31,21 +32,16 @@ class IngredientController extends Controller
 
     public function index()
     {
-        $client = new Client();
-        $response = $client->request('GET', 'http://localhost/radcookproject1/public/api/ingredients', [
-            'headers' => [
-                'Accept' => 'application/json'
-            ]
-        ]);
+        $response = Http::get('http://localhost/radcookproject1/public/api/ingredients');
         $statusCode = $response->getStatusCode();
 
         if ($statusCode != 200){
-            return view('ingredient.index','No hay ingredientes');
+            return view('ingredient.index', ['status' => 'No hay ingredientes']);
         }
 
-        $body = $response->getBody()->getContents();
+        $ingredients =  json_decode($response->getBody()->getContents());
 
-        return view('ingredient.index', ['ingredients' => json_decode($body)])
+        return view('ingredient.index',  compact('ingredients'))
         ->with('i', 1);
     }
 
@@ -66,12 +62,33 @@ class IngredientController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
+
+    /*
     public function store(Request $request)
     {
         request()->validate(Ingredient::$rules);
 
         $request['user_id'] = Auth::user()->id;
        $ingredient = Ingredient::create($request->all());
+
+        return redirect()->route('ingredients.index')
+            ->with('success', 'Ingredient created successfully.');
+    } */
+
+    public function store(Request $request)
+    {
+        request()->validate(Ingredient::$rules);
+
+        $response = Http::post('http://localhost/radcookproject1/public/api/ingredient/create', [
+            'name' => $request->name,
+            'type' => $request->type,
+            'user_id' =>  Auth::user()->id
+        ]);
+        $statusCode = $response->getStatusCode();
+
+        if ($statusCode != 200){
+            return view('ingredient.index', ['message' => 'No fue posible crear el ingrediente']);
+        }
 
         return redirect()->route('ingredients.index')
             ->with('success', 'Ingredient created successfully.');

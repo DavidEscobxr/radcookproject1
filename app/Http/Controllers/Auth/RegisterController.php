@@ -80,7 +80,7 @@ class RegisterController extends Controller
         ]);
 
         if ($user != null) {
-            return response()->json(['status' => 'ok'], 200);
+            return response()->json(['status' => 'ok', 'user' => $user], 200);
         }
 
         return response()->json(['status' => 'error'], 500);

@@ -88,7 +88,7 @@ class RecipeController extends BaseController
             return response()->json(['status' => 'not_found'], Response::HTTP_NOT_FOUND);
         }
 
-        $recipe->ingredients;
+        $recipe->ingredients->groupBy('type');
         return response()->json($recipe, response::HTTP_OK);
     }
 
@@ -154,5 +154,18 @@ class RecipeController extends BaseController
         $recipe->delete();
 
         return response()->json(['status' => 'success', 'message' => 'Recipe delete successfully'], Response::HTTP_OK);
+    }
+
+    public function getByUserId(int $id)
+    {
+        $user = User::find($id);
+
+        if ($user == null) {
+            return response()->json(['status' => 'user not_found'], Response::HTTP_NOT_FOUND);
+        }
+
+        $recipes = $user->recipes;
+
+        return response()->json($recipes, response::HTTP_OK);
     }
 }

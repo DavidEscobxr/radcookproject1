@@ -1,5 +1,8 @@
 <div class="box box-info padding-1">
     <div class="box-body">
+        @if ($error != '')
+        <p class='text-danger'> {{$error}} </p>
+        @endif
 
         <div class="form-group">
             {{ Form::label('Nombre') }}
@@ -28,9 +31,14 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('descripción') }}
+            {{ Form::label('Descripción') }}
             {{ Form::text('description', $recipe->description, ['class' => 'form-control' . ($errors->has('description') ? ' is-invalid' : ''), 'placeholder' => 'Descripción']) }}
             {!! $errors->first('description', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('Pasos de la receta') }}
+            {{ Form::text('detail', $recipe->detail, ['class' => 'form-control' . ($errors->has('detail') ? ' is-invalid' : ''), 'placeholder' => 'Pasos de la receta']) }}
+            {!! $errors->first('detail', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
         <div class="form-group">
@@ -64,21 +72,6 @@
               </div>
             @endforeach
         @endforeach
-
-
-        <!--
-        <div class="form-group">
-            {{ Form::label('user_id') }}
-            {{ Form::text('user_id', $recipe->user_id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
-            {!! $errors->first('user_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-
-        <div class="form-group">
-            {{ Form::label('image_id') }}
-            {{ Form::text('image_id', $recipe->image_id, ['class' => 'form-control' . ($errors->has('image_id') ? ' is-invalid' : ''), 'placeholder' => 'Image Id']) }}
-            {!! $errors->first('image_id', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        -->
 
     </div>
     <br>

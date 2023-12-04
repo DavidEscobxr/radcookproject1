@@ -9,6 +9,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
 
+                @if ($error != '')
+                    <p class="text-danger">{{$error}}</p>
+                @endif
+
                 @includeif('partials.errors')
 
                 <div class="card card-default">

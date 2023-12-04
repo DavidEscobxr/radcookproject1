@@ -18,7 +18,7 @@
                         </div>
                     @endif
 
-                    <h4>{{ __('¡Felicidades, ya iniciaste sesión!') }}</h4>
+                  <!--  <h4>{{ __('¡Felicidades, ya iniciaste sesión!') }}</h4>-->
                 </div>
             </div>
 
