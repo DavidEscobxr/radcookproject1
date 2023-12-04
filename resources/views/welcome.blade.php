@@ -53,8 +53,6 @@
             </p>
             <br>
         </div>
-
-
     </div>
     <!--
     <section class="d-flex flex-column justify-content-center align-items-center pt-5  text-center w-100 m-auto" id="intro">
@@ -71,6 +69,33 @@
         </div>
 
     </section> -->
+
+    <div class="container py-5">
+        <div class="card-body">
+            <form method="POST" action="{{ route('recipes.store') }}"  role="form" enctype="multipart/form-data">
+                @csrf
+                <div class="jumbotron custom-jumbotron rounded shadow-sm text-center text-success bg-custom-beish">
+                    <div class="form-group">
+                        @foreach($map as $type => $ingredients)
+                            @foreach ($ingredients as $ingredient)
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox"  name="ingredients[]"  value={{$ingredient['id']}} href="{{ route('ingredients.index')}}" class="form-check-input"> <label>{{$ingredient['name']}}</label>
+                                </div>
+                            @endforeach
+                        @endforeach
+                        <br><br>
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-success">{{ __('Buscar') }}</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <br>
+    </div>
+
     <div>
         <div class="row justify-content-center "  >
 

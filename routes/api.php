@@ -52,6 +52,8 @@ Route::delete('recipe/{id}/delete', [RecipeController::class, 'destroy']);
 
 Route::get('ingredient/{id}/recipes', [IngredientController::class, 'getRecipesByIngredient']);
 
+Route::get('ingredients/recipes', [IngredientController::class, 'getRecipesByIngredientV2']);
+
 Route::post('foro/create', [ForoController::class, 'create']);
 
 Route::delete('foro/{id}/delete', [ForoController::class, 'destroy']);

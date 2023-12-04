@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ingredient;
 use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -46,7 +47,8 @@ class LoginV2Controller extends Controller
 
         return view('welcome', [
             'user' => $user,
-            'success' => true
+            'success' => true,
+            'ingredients' => Ingredient::get()
             ]
         );
     }
