@@ -4,8 +4,10 @@ use App\Http\Controllers\IngredientController;
 use App\Http\Controllers\LoginV2Controller;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UtilsController;
 use App\Http\Middleware\JwtMiddleware;
 use App\Ingredient;
+use App\Recipe;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,13 +22,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $ingredients = Ingredient::get();
+    $recipes = Recipe::get();
 
-    $map = $ingredients->groupBy(function($item){
-        return $item->type;
-    });
-
-    return view('welcome', compact('ingredients', 'map'));
+    return view('welcome', compact('recipes'));
 });
 
 Route::get('/learn', function () {
@@ -47,16 +45,20 @@ Route::post('login', [LoginV2Controller::class, 'login'])->name('login');
 
 Route::group(['middleware' => JwtMiddleware::class], function() {
     Route::post('logout', [LoginV2Controller::class, 'logout'])->name('logout');
-
+/*
     // Password Reset Routes...
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-    Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+    Route::post('password/reset', 'Auth\ResetPasswordController@reset');*/
 
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('users', UserController::class);
     Route::resource('recipes', RecipeController::class);
     Route::resource('ingredients', IngredientController::class);
+    Route::resource('utils', UtilsController::class);
+
+
+   // Route::post('/ingredients/mi-metodo', 'IngredientController@miMetodo')->name('mi.metodo');
 });

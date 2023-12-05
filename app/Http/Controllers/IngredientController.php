@@ -36,7 +36,7 @@ class IngredientController extends Controller
         $statusCode = $response->getStatusCode();
 
         if ($statusCode != 200){
-            return view('ingredient.index', ['status' => 'No hay ingredientes']);
+            return view('ingredient.index',  ['ingredients' => []]);
         }
 
         $ingredients =  json_decode($response->getBody()->getContents());

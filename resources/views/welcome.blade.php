@@ -70,35 +70,25 @@
 
     </section> -->
 
-    <div class="container py-5">
-        <div class="card-body">
-            <form method="POST" action="{{ route('recipes.store') }}"  role="form" enctype="multipart/form-data">
-                @csrf
-                <div class="jumbotron custom-jumbotron rounded shadow-sm text-center text-success bg-custom-beish">
-                    <div class="form-group">
-                        @foreach($map as $type => $ingredients)
-                            @foreach ($ingredients as $ingredient)
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox"  name="ingredients[]"  value={{$ingredient['id']}} href="{{ route('ingredients.index')}}" class="form-check-input"> <label>{{$ingredient['name']}}</label>
-                                </div>
-                            @endforeach
-                        @endforeach
-                        <br><br>
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-success">{{ __('Buscar') }}</button>
+    <div>
+        <div class="row justify-content-center">
+            @foreach ($recipes as $recipe)
+                <div class="col-md-4 row justify-content-center">
+                    <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 18rem;">
+                        <div class="card-header shadow-sm rounded"><h2>{{$recipe->name}}<br></h2></div>
+                        <div class="card-body">
+                            <img class="receta rounded" src="{{ asset($recipe->image) }}" alt="">
+                            <br>
+                          <h2 class="card-title">Descripción</h2>
+                          <p class="card-text">{{$recipe->description}}</p>
+
                         </div>
-                        <br>
+                        <a href="#" class="btn btn-success">Ver receta</a>
                     </div>
                 </div>
+            @endforeach
 
-            </form>
-        </div>
-        <br>
-    </div>
-
-    <div>
-        <div class="row justify-content-center "  >
-
+        <!--
             <div class="col-md-3 row justify-content-center">
                 <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 18rem;">
                     <div class="card-header shadow-sm rounded"><h2>Huevos pericos<br></h2></div>
@@ -205,7 +195,7 @@
             </div>
         </div>
     </div>
-    </div>
+    </div>-->
 
     <section class="w-100">
     <div class="row w-75 mx-auto" id="servicios-fila-1">
