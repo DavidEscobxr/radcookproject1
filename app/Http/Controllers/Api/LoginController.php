@@ -16,7 +16,7 @@ class LoginController extends Controller
     
 {
     //prueba login
-    public function login1(Request $request)
+  public function login1(Request $request)
 {
     // Validar
     $this->validate($request, [
@@ -36,7 +36,16 @@ class LoginController extends Controller
 
     $token = $user->createToken('authToken-' . $user->id)->plainTextToken;
 
-    return response()->json(['message' => 'Inicio de sesión exitoso', 'token' => $token, 'user' => $user]);
+    return response()->json([
+        'message' => 'Inicio de sesión exitoso',
+        'token' => $token,
+        'user' => [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            // Agrega otros campos del usuario si es necesario
+        ],
+    ]);
 }
     
     public function login(Request $request)
