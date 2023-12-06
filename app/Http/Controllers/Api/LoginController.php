@@ -9,7 +9,35 @@ use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 class LoginController extends Controller
+    
 {
+    //prueba login
+    public function login1(Request $request)
+{
+    // Validar
+    $this->validate($request, [
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
+
+    // Hace el intento de autenticar
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Autenticación exitosa
+        $user = Auth::user();
+
+        // Revocar tokens existentes para el usuario (opcional)
+        $user->tokens()->delete();
+
+        // Crear un nuevo token único para el usuario
+        $token = $user->createToken('authToken-' . $user->id)->accessToken;
+
+        return response()->json(['message' => 'Inicio de sesión exitoso', 'token' => $token, 'user' => $user]);
+    } else {
+        // Autenticación error
+        return response()->json(['error' => 'Credenciales incorrectas', 'message' => 'Inicio de sesión fallido'], 401);
+    }
+}
+
 
     public function login(Request $request)
     {
