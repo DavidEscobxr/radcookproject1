@@ -24,13 +24,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $recipes = Recipe::get();
 
-    return view('welcome', compact('recipes'));
+    $ingredients = Ingredient::get();
+    $map = $ingredients->groupBy(function($item){
+        return $item->type;
+    });
+
+    return view('welcome', compact('recipes', 'ingredients', 'map'));
 });
 
 Route::get('/learn', function () {
     return view('learn');
 });
-Route::get('/prueba', function () {
+Route::get('/prueb2a', function () {
     return view('prueba');
 });
 
@@ -57,8 +62,6 @@ Route::group(['middleware' => JwtMiddleware::class], function() {
     Route::resource('users', UserController::class);
     Route::resource('recipes', RecipeController::class);
     Route::resource('ingredients', IngredientController::class);
-    Route::resource('utils', UtilsController::class);
 
-
-   // Route::post('/ingredients/mi-metodo', 'IngredientController@miMetodo')->name('mi.metodo');
+    Route::post('filter', 'App\Http\Controllers\UtilsController@recipe')->name('recip.filter');
 });

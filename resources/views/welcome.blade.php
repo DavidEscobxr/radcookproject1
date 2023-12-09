@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 
 <div class="container">
@@ -70,8 +69,26 @@
 
     </section> -->
 
-    <div>
-        <div class="row justify-content-center">
+    <div class="container">
+        <div class="jumbotron custom-jumbotron rounded shadow-sm text-center text-success bg-custom-beish">
+            <form method="POST" action="{{ route('recip.filter') }}"  role="form" enctype="multipart/form-data">
+                @csrf
+                @csrf
+                <div class="form-check form-check-inline">
+                    @foreach($map as $type => $ingredients)
+                        @foreach ($ingredients as $ingredient)
+                            <input type="checkbox" name="ingredients[]" value={{$ingredient['id']}}> <label>{{$ingredient['name']}}</label>
+                        @endforeach
+                    @endforeach
+                </div>
+                <div class="box-footer mt20">
+                    <button type="submit" class="btn btn-success">{{ __('Buscar') }}</button>
+                </div>
+                <br>
+            </form>
+        </div>
+        <br><br>
+            <div class="row justify-content-center">
             @foreach ($recipes as $recipe)
                 <div class="col-md-4 row justify-content-center">
                     <div class="card bg-light mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 18rem;">
@@ -83,7 +100,7 @@
                           <p class="card-text">{{$recipe->description}}</p>
 
                         </div>
-                        <a href="#" class="btn btn-success">Ver receta</a>
+                        <a class="btn btn-sm btn-primary " href="{{ route('recipes.show',$recipe->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Ver receta') }}</a>
                     </div>
                 </div>
             @endforeach

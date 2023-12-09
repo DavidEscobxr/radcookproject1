@@ -8,15 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
-/**
- * Class UserController
- * @package App\Http\Controllers
- */
 class UtilsController extends Controller
 {
-    public function store(Request $request)
+    public function recipe(Request $request)
     {
-        return view('auth.login');
         $ingredients = [];
         foreach ($request->ingredients as $id) {
             $ingredients[] = intval($id);

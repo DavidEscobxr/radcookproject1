@@ -45,6 +45,11 @@ class LoginV2Controller extends Controller
        $user = JWTAuth::parseToken()->authenticate();
        Auth::login($user, true);
 
+       $ingredients = Ingredient::get();
+        $map = $ingredients->groupBy(function($item){
+            return $item->type;
+        });
+
        // Todas las recetas
        $response = Http::get('http://localhost/radcookproject1/public/api/recipes');
 
@@ -52,7 +57,9 @@ class LoginV2Controller extends Controller
         return view('welcome', [
             'user' => $user,
             'success' => true,
-            'recipes' => []
+            'recipes' => [],
+            'ingredients' => $ingredients,
+            'map' => $map
             ]
         );
        }
@@ -60,7 +67,9 @@ class LoginV2Controller extends Controller
         return view('welcome', [
             'user' => $user,
             'success' => true,
-            'recipes' => json_decode($response->getBody()->getContents())
+            'recipes' => json_decode($response->getBody()->getContents()),
+            'ingredients' => $ingredients,
+            'map' => $map
             ]
         );
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ingredient;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -92,6 +93,11 @@ class IngredientController extends Controller
 
         return redirect()->route('ingredients.index')
             ->with('success', 'Ingredient created successfully.');
+    }
+
+    public function recipe(array $ingredients)
+    {
+        return $ingredients;
     }
 
     /**
