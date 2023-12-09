@@ -7,10 +7,47 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
+    
 {
+    //prueba login
+  public function login1(Request $request)
+{
+    // Validar
+    $this->validate($request, [
+        'email' => 'required|email',
+        'password' => 'required',
+    ]);
 
+    $user = User::where('email', $request->email)->first();
+
+    if (!$user || !Hash::check($request->password, $user->password)) {
+        throw ValidationException::withMessages([
+            'email' => ['Las credenciales proporcionadas son incorrectas.'],
+        ]);
+    }
+
+    $user->tokens()->delete();
+
+    $token = $user->createToken('authToken-' . $user->id)->plainTextToken;
+
+    return response()->json([
+        'message' => 'Inicio de sesión exitoso',
+        'token' => $token,
+        'user' => [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            // Agrega otros campos del usuario si es necesario
+        ],
+    ]);
+}
+    
     public function login(Request $request)
     {
         $credentials = $request->only('email','password');
