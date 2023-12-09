@@ -15,7 +15,10 @@
         -->
         <div class="form-group">
             {{ Form::label('tipo') }}
-            {{ Form::select('type',  ['Fruta'=>'Fruta', 'Verdura'=>'Verdura', 'Carne' => 'Carne',
+            {{ Form::select('type',  [
+            'Fruta'=>'Fruta', 
+            'Verdura'=>'Verdura', 
+            'Carne' => 'Carne',
             'Pescado' => 'Pescado',
             'Lácteos' => 'Lácteos',
             'Cereales' => 'Cereales',
